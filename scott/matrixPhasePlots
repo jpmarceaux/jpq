@@ -89,10 +89,10 @@ def matrixPhase(matrix):
             plt.plot([x, x + np.cos(theta)/(dim**2)], [y, y + np.sin(theta)/(dim**2)], linestyle='-', color='k')
     plt.xlim([0,1])
     plt.ylim([0,1])
-    axes.set_aspect('equal', adjustable='datalim') # use adjustable='box' if we want the entire plot to be square
+    axes.set_aspect('equal', adjustable='box') # use adjustable='datalim' if we want the entire plot to be rectangular
     plt.show()
     
- def matrixPhaseHTML(matrix):
+def matrixPhaseHTML(matrix):
     # Generate a Hinton diagram of a matrix of complex numbers and return the HTML code for it
     # Also returns the HTML for the mapping between phase and color
     # MATRIX assumed to have complex numbers with magnitude at most 1
@@ -118,9 +118,13 @@ def matrixPhase(matrix):
             plt.plot([x, x + np.cos(theta)/(dim**2)], [y, y + np.sin(theta)/(dim**2)], linestyle='-', color='k')
     plt.xlim([0,1])
     plt.ylim([0,1])
-    axes.set_aspect('equal', adjustable='datalim') # use adjustable='box' if we want the entire plot to be square
+    axes.set_aspect('equal', adjustable='box') # use adjustable='datalim' if we want the entire plot to be rectangular
     
     tmpfile = BytesIO()
     figure.savefig(tmpfile, format='png')
     data = base64.b64encode(tmpfile.getbuffer()).decode('utf-8')
     return f"<img src='file:///{containing_folder}/jpq/scott/hsl-color-wheel.png'/>" + f"<img src='data:image/png;base64,{data}'/>"
+    
+# For testing
+with open('test.html', 'w') as f:
+    f.write(matrixPhaseHTML([[0.5+0.5j,0.3],[0.1,0.8]]))
