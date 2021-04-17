@@ -154,7 +154,7 @@ def kraus2cten(kset):
     
     cmat = np.zeros((dims[0]*dims[1], dims[0]*dims[1]), dtype=complex)
     for K in kset:
-        cmat += np.outer(vectorize(K), vectorize(dagger(K)))
+        cmat += np.outer(vectorize(K), vectorize(K.conj()))
     return cmat2cten(cmat, kset[0].shape[0], kset[0].shape[1])
 
 def kraus2cmat(kset):

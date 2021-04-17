@@ -58,7 +58,7 @@ def matrize(vec, R=-1, C=-1):
             arry.append([])
             for d2 in range(dim):
                 arry[d1].append(vec[d1*dim+d2])
-        return np.array(arry)
+        return np.array(arry, dtype=complex)
     else:
         # rectangular matrix
         assert vec.size == R*C
@@ -69,7 +69,7 @@ def matrize(vec, R=-1, C=-1):
                 arry[dr].append(vec[dr*C + dc])
             #xfor
         #xfor 
-        return np.array(arry)
+        return np.array(arry, dtype=complex)
 #!matrize
 
 def vectorize(mat):
